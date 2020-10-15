@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 2wsx@WSX
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: on-failure
+  httpapi:
+    build: ./httpapi
+    depends_on:
+      - postgres
+    volumes:
+      - graphcache:/app/cache
+    environment:
+      DB_DSN: postgres://postgres/postgres
+      DB_USER: postgres
+      DB_PASSWORD: 2wsx@WSX
+      GRAPH_CACHE_PATH: /app/cache/graph.pkl
+      API_URL: http://localhost   # For benchmark.py
+      ACCESS_LOG: ""
+      APP_MODULE: service.api:fapi
+      MAX_WORKERS: 1
+    ports:
+    - 8080:80
+    stop_grace_period: 30s
+  init:
+    build: init
+    command: sleep infinity
+    depends_on:
+      - postgres
+    environment:
+      DB_DSN: postgres://postgres/postgres
+      DB_USER: postgres
+      DB_PASSWORD: 2wsx@WSX
+
+volumes:
+  pgdata:
+  graphcache:

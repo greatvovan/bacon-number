@@ -1,0 +1,7 @@
+httpapi/cache/*
+init/*.csv
+init/dataset/*.csv
+.idea/
+__pycache__/
+tests/.pytest_cache/
+.DS_Store

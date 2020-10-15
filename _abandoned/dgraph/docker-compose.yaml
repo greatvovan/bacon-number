@@ -1,0 +1,34 @@
+version: "3.2"
+services:
+  zero:
+    image: dgraph/dgraph:v20.07.1
+    volumes:
+      - data:/dgraph
+    ports:
+      - 5080:5080
+      - 6080:6080
+    restart: on-failure
+    command: dgraph zero --my=zero:5080
+  alpha:
+    image: dgraph/dgraph:v20.07.1
+    volumes:
+      - data:/dgraph
+    ports:
+      - 8080:8080
+      - 9080:9080
+    restart: on-failure
+    command: dgraph alpha --my=alpha:7080 --zero=zero:5080 --whitelist 172.0.0.1:172.255.255.255
+  ratel:
+    image: dgraph/dgraph:v20.07.1
+    ports:
+      - 8000:8000
+    command: dgraph-ratel
+  init:
+    build: init
+    volumes:
+    - sqlite:/app/db
+    command: sleep infinity
+
+volumes:
+  data:
+  sqlite:

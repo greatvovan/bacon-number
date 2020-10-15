@@ -1,0 +1,4 @@
+type Actor {
+    name: String! @search(by: [hash])
+    peer: Actor!
+}
