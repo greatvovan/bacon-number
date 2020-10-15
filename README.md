@@ -87,7 +87,7 @@ same directory, all the data (and graph dump) will be in place.
 
 If you want to delete the volume (and the data) say
 ```
-docker volume rm bacon_number_pgdata bacon_number_graphcache
+docker volume rm bacon-number_pgdata bacon-number_graphcache
 ```
 
 ## Endpoints
