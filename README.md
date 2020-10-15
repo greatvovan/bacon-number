@@ -83,7 +83,7 @@ docker-compose down
 ```
 `docker-compose` will create volumes named `pgdata` and `graphcache` to
 persist the data, so next time you launch `docker-compose up` in the
-same directory, all the data (and graph dump) will be in place.
+same directory, all the data (and the graph dump) will be in place.
 
 If you want to delete the volume (and the data) say
 ```
