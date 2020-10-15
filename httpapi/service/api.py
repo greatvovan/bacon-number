@@ -36,7 +36,7 @@ async def bacon_distance(name: str, path: bool = False):
     except ActorNotFoundError as e:
         return Response(status_code=404, content='No actors with name ' + str(e))
     except NotInitializedError as e:
-        return Response(status_code=503, content='Service is initializing', headers={'Retry-After': e.args[0]})
+        return Response(status_code=503, content='Service is initializing', headers={'Retry-After': str(e)})
 
 
 @fapi.get("/dist")
@@ -47,7 +47,7 @@ async def actor_distance(name1: str, name2: str, path: bool = False):
     except ActorNotFoundError as e:
         return Response(status_code=404, content="Some of actors aren't found: " + str(e))
     except NotInitializedError as e:
-        return Response(status_code=503, content='Service is initializing', headers={'Retry-After': e.args[0]})
+        return Response(status_code=503, content='Service is initializing', headers={'Retry-After': str(e)})
 
 
 @fapi.get("/rebuild-graph")
