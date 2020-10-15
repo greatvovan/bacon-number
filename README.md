@@ -24,7 +24,7 @@ database as primary storage of actors relationships. Container named
 `init` will parse the dataset from CSV files and store it to DB.
 
 ```
-unzip dataset/*.zip
+docker-compose exec init unzip dataset/*.zip -d dataset
 docker-compose exec init python dataset_to_db.py
 ```
 
