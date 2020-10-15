@@ -108,7 +108,8 @@ connection path, too.
 **Response codes**
 - `200`: OK, check the response data,
 - `404`: actor was not found in the database,
-- `500`: unexpected error occured. 
+- `500`: unexpected error occured,
+- `503`: service is initializing, retry later.
 
 **Response body**
 
@@ -129,7 +130,8 @@ connection path, too.
 **Response codes**
 - `200`: OK, check the response data,
 - `404`: actor was not found in the database,
-- `500`: unexpected error occured. 
+- `500`: unexpected error occured,
+- `503`: service is initializing, retry later.
 
 **Response body**
 
