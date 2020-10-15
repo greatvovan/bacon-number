@@ -3,7 +3,7 @@
 HTTP API for evaluation of [Bacon Numbers](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon)
 of actors.
 
-The service uses Postgres database as the persistent storage and uses disk cache for quick launch.
+The service uses Postgres database as the persistent storage and a disk cache for quick launch.
 
 ## Installation
 
