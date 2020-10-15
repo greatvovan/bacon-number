@@ -17,7 +17,7 @@ cd bacon-number
 docker-compose up -d --build
 ```
 
-__Hint: subsequent times you can omit `--build` key to speed up start up.__
+_**Hint:** subsequent times you can omit `--build` key to speed up start up._
 
 Now initialize the database. The service uses Postgres
 database as primary storage of actors relationships. Container named
@@ -36,7 +36,7 @@ HTTP API service (in container named `httpapi`) launches in waiting
 state, meaning it will block until the process of data population in
 Postgres is completed. As soon as it is completed, the service begins
 building a [NetworkX Graph](https://networkx.github.io/documentation/latest/reference/classes/index.html)
-of connections between actors, which takes around 3 minutes. The built
+of connections between actors, which takes around 2 minutes. The built
 graph is then dumped to disk and subsequent launches will take just
 seconds.
 
