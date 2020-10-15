@@ -123,7 +123,7 @@ async def calculate_pairs(db: asyncpg.Connection):
 
 
 async def calculate_bacon(db: asyncpg.Connection):
-    print('Calculating Bacon numbers (dubug purposes, not used in API)...')
+    print('Calculating Bacon numbers (for test purposes, not used in API)...')
     bacon_id = await db.fetchval("select id from actors where name = 'Kevin Bacon'")
     await db.execute('insert into bacon_numbers values ($1, 0)', bacon_id)
 
