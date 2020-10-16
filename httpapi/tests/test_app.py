@@ -51,7 +51,7 @@ def get_application_with_randomized_mock_dependencies():
     pair_ids = [random.randint(1, 10000), random.randint(1, 10000)]
     pair_dict = {get_random_string(): i for i in pair_ids}
 
-    db = Database('', '', '')
+    db = Database()
     db.get_actor_id = AsyncMock(return_value=random.randint(1, 10000))
     db.get_actor_ids = AsyncMock(return_value=pair_dict)
     db.get_actor_names = AsyncMock(return_value=path_dict)

@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi import FastAPI
 from fastapi.responses import Response, PlainTextResponse
 from .app import Application, Distance, ActorNotFoundError, NotInitializedError
-from .backend import Database, ActorsGraph
+from .backend import DatabaseMemoryCached, ActorsGraph
 from .config import *
 
 
@@ -71,7 +71,7 @@ async def shutdown():
 
 def build_application():
     # config_logging()
-    db = Database(DB_DSN, DB_USER, DB_PASSWORD)
+    db = DatabaseMemoryCached(DB_DSN, DB_USER, DB_PASSWORD)
     graph = ActorsGraph()
     return Application(db, graph, GRAPH_CACHE_PATH)
 

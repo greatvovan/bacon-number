@@ -3,7 +3,7 @@ import pytest
 from typing import Dict
 from service.config import DB_DSN, DB_USER, DB_PASSWORD
 import asyncpg as apg
-from service.backend import Database
+from service.backend import DatabaseOnline
 
 
 @pytest.fixture(scope='module')
@@ -15,7 +15,7 @@ async def conn():
 
 @pytest.fixture(scope='module')
 async def db():
-    db = Database(DB_DSN, username=DB_USER, password=DB_PASSWORD)
+    db = DatabaseOnline(DB_DSN, username=DB_USER, password=DB_PASSWORD)
     await db.init()
     yield db
     await db.close()
@@ -35,14 +35,14 @@ async def get_some_random_actors(conn: apg.Connection, count: int) -> Dict[int, 
 
 
 @pytest.mark.asyncio
-async def test_get_actor_id(conn: apg.Connection, db: Database):
+async def test_get_actor_id(conn: apg.Connection, db: DatabaseOnline):
     rnd_actor = await get_some_random_actors(conn, 1)
     test_id, test_name = list(rnd_actor.items())[0]
     assert await db.get_actor_id(test_name) == test_id
 
 
 @pytest.mark.asyncio
-async def test_get_actor_ids(conn: apg.Connection, db: Database):
+async def test_get_actor_ids(conn: apg.Connection, db: DatabaseOnline):
     rnd_actors = await get_some_random_actors(conn, 10)
     ids = await db.get_actor_ids(list(rnd_actors.values()))
 
@@ -51,7 +51,7 @@ async def test_get_actor_ids(conn: apg.Connection, db: Database):
 
 
 @pytest.mark.asyncio
-async def test_get_actor_names(conn: apg.Connection, db: Database):
+async def test_get_actor_names(conn: apg.Connection, db: DatabaseOnline):
     rnd_actors = await get_some_random_actors(conn, 10)
     names = await db.get_actor_names(list(rnd_actors.keys()))
 
