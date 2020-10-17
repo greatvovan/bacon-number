@@ -60,9 +60,9 @@ Run the benchmark:
 ```
 $ docker-compose exec httpapi python benchmark.py
 Got 5000 random actors
-5000 Bacon Numbers calculated in 5.1 (976/s)
+5000 Bacon Numbers calculated in 2.7 (1827/s)
 Got 10000 random actors
-5000 random pair distances calculated in 5.1 (984/s)
+5000 random pair distances calculated in 2.7 (1860/s)
 ```
 
 Play with some actors you know:
