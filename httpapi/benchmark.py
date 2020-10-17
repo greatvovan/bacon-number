@@ -9,9 +9,9 @@ from service.config import DB_DSN, DB_USER, DB_PASSWORD
 
 
 api_url = os.getenv('API_URL', 'http://localhost:8080')
-num_requests = 3000
+num_requests = 5000
 counter = 0
-parallel_tasks = 10
+parallel_tasks = 100
 actor_names = None
 
 
@@ -63,8 +63,8 @@ async def get_some_random_actors(conn: apg.Connection, count: int) -> List[str]:
 async def request_bn():
     global counter
     url = urljoin(api_url, '/bn')
-    while counter < num_requests:
-        async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession() as session:
+        while counter < num_requests:
             name = actor_names[counter]
             counter += 1
             async with session.get(url + f'?name={quote_plus(name)}') as response:

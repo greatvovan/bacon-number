@@ -17,7 +17,7 @@ cd bacon-number
 docker-compose up -d --build
 ```
 
-__Hint: subsequent times you can omit `--build` key to speed up start up.__
+_**Hint:** subsequent times you can omit `--build` key to speed up start up._
 
 Now initialize the database. The service uses Postgres
 database as primary storage of actors relationships. Container named
@@ -36,7 +36,7 @@ HTTP API service (in container named `httpapi`) launches in waiting
 state, meaning it will block until the process of data population in
 Postgres is completed. As soon as it is completed, the service begins
 building a [NetworkX Graph](https://networkx.github.io/documentation/latest/reference/classes/index.html)
-of connections between actors, which takes around 3 minutes. The built
+of connections between actors, which takes around 2 minutes. The built
 graph is then dumped to disk and subsequent launches will take just
 seconds.
 
@@ -59,10 +59,10 @@ docker-compose exec httpapi pytest
 Run the benchmark:
 ```
 $ docker-compose exec httpapi python benchmark.py
-Got 3000 random actors
-3000 Bacon Numbers calculated in 6.8 (439/s)
-Got 6000 random actors
-3000 random pair distances calculated in 8.3 (361/s)
+Got 5000 random actors
+5000 Bacon Numbers calculated in 5.1 (976/s)
+Got 10000 random actors
+5000 random pair distances calculated in 5.1 (984/s)
 ```
 
 Play with some actors you know:
