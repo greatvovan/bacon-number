@@ -1,6 +1,7 @@
 import os
 import time
 import asyncio
+import uvloop
 import aiohttp
 from urllib.parse import urljoin, quote_plus
 from typing import List
@@ -86,4 +87,5 @@ async def request_dist():
 
 
 if __name__ == '__main__':
+    uvloop.install()
     asyncio.run(main())
